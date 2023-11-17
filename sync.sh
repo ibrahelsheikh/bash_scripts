@@ -16,7 +16,15 @@ fi
 source_dir="/mnt/c/HDD/Data Tanta University Lectures & Sections"
 destination_dir="/mnt/d/Data Tanta University Lectures & Sections" 
 
-/mnt/c/Windows/System32/defrag.exe D: /U /V
+# Set the Internal Field Separator (IFS) to ","
+IFS=','
+
+# Create an array by reading the string using IFS
+read -ra my_array <<< "$destination_dir"
+
+
+
+/mnt/${my_array[1]}/Windows/System32/defrag.exe  /U /V
 
 
 # Sync missing files from source to destination
@@ -24,5 +32,3 @@ rsync -av --ignore-existing "$source_dir/" "$destination_dir/"
 
 # Sync missing files from destination to source
 rsync -av --ignore-existing "$destination_dir/" "$source_dir/"
-
-/mnt/c/Windows/System32/defrag.exe D: /U /V
