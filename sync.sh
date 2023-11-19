@@ -29,6 +29,3 @@ read -ra my_array <<< "$destination_dir"
 
 # Sync missing files from source to destination
 rsync -av --ignore-existing "$source_dir/" "$destination_dir/"
-
-# Sync missing files from destination to source
-rsync -av --ignore-existing "$destination_dir/" "$source_dir/"
